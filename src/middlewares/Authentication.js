@@ -41,6 +41,7 @@ class Authentication {
 
   static signUp = async (req, res) => {
     const { email, password} = req.body;
+    console.log('Body',req.body);
 
     try {
       const existingUser = await db.User.findOne({ where: { email} });
@@ -69,6 +70,7 @@ class Authentication {
         user: newUser
       });
     } catch (error) {
+      console.log('testing Errors',error);
       console.error(error);
       return res.status(500).json({ success: false, message: 'Failed to sign up' });
     }
